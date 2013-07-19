@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<html>
+	<head>
+        <meta charset="utf-8" />
+        <title>Mine Sweeper</title>
+        <link rel="stylesheet" href="stylesheets/reset.css" />
+        <link rel="stylesheet" href="stylesheets/minesweeper.css" />
+        <script src="scripts/square.js"></script>
+        <script src="scripts/board.js"></script>
+       
+        <script>
+        var board=new Board(9,9,10);  //縦　横　地雷数
+	   function displayFlag(row,col){
+	   		if (board.isFinished()) return;		//代替：ゲームが既に終了
+	   		if (board.isOpened(row,col)) return;//代替：マスが既に開かれている
+//旗を立てる　＆　おろす	
+	   		var square=document.getElementById(row +'-' + col);	//id=row-col をsquare
+//			if (board.squares[row][col].flagged===true){
+//			if(square.innerHTML != ""){
+			if (board.isFlagged(row,col)){	//旗が立っていたら
+
+				board.offFlag(row,col);
+				square.innerHTML="";
+
+			}else{							//旗がおりていたら
+	   			board.setFlag(row,col);
+//	   			var square=document.getElementById(row +'-' + col);
+				square.innerHTML="<img src='images/flag.png' />";
+			}
+	   }
+	   
+        function appendBoardTable(rowsize,colsize) {
+         var boardtbl =document.getElementById('board').getElementsByTagName("tbody")[0];
+//           var boardtbl = document.getElementById('board');  IE対応のため、上記に変更
+           for (var row = 0; row < rowsize; row++) {
+               var tr = document.createElement('tr');
+               for (var col = 0; col < colsize; col++) {
+                   var td = document.createElement('td');
+                   td.setAttribute('oncontextmenu', 'displayFlag(' + row + ',' + col + ');return false;');
+                   td.setAttribute('id', row + '-' + col);  // id="row-col"
+                   tr.appendChild(td);
+               }
+               boardtbl.appendChild(tr);
+            }
+	   }
+	  </script>
+
+	</head>
+	<body onload="appendBoardTable(9,9)">
+	        <div id="head">
+                Mine Sweeper<img src="images/mine.gif"/>
+            </div>
+
+            <div id="contents">
+                <table id="board"><tbody></tbody></table>
+                <button class="button" id="easyBtn">初級</button>
+                <button class="button" id="normalBtn">中級</button>
+                <button class="button" id="hardBtn">上級</button>
+            </div>
+        </div>		
+    </body>
+</html>

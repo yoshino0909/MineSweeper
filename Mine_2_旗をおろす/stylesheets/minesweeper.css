@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+}
+
+#head {
+    margin: 0.5em 0;
+    font-size: 4em;
+    font-family: cursive, sans-serif;
+}
+
+#contents {
+    text-align: center;
+    margin: 0 auto;
+    width: 400px;
+}
+
+#contents button {
+    margin-top: 1em;
+}
+
+#board {
+    margin: 0 auto;
+
+}
+
+#board td {
+    text-align: center;
+    font-family: cursive, sans-serif;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    background-color: #90ee90;
+    border: #333 outset 3px;
+    cursor: pointer;
+}
+
+#board td img {
+    width: 18px;
+    height: 18px;
+
+}
